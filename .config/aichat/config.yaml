@@ -1,0 +1,23 @@
+# see https://github.com/sigoden/aichat/blob/main/config.example.yaml
+
+model: ollama:qwen3:4b
+
+rag_embedding_model: ollama:qwen3-embedding:0.6b
+
+clients:
+- type: openai-compatible
+  name: ollama
+  api_base: http://localhost:11434/v1
+  models:
+      - name: qwen3:4b
+        max_input_tokens: 40960
+
+      - name: qwen3-embedding:0.6b
+        type: embedding
+        default_chunk_size: 1000
+        max_batch_size: 32
+
+# Limites globais
+max_output_tokens: 512
+temperature: 0.2
+top_p: 0.9

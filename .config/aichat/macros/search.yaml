@@ -1,0 +1,3 @@
+description: Pesquisa na web usando DuckDuckGo
+command: >
+  bash -c 'curl -s "https://api.duckduckgo.com/?q=$*&format=json"'

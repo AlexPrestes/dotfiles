@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function get_volume {
+  /home/arexprestes/.local/bin/pulsemixer --get-volume | cut -d " " -f 1
+}
+
+function is_mute {
+  /home/arexprestes/.local/bin/pulsemixer --get-mute | grep 1 >/dev/null
+}
+
+volume=$(get_volume)
+
+if is_mute; then
+  volume=" M "
+fi
+
+printf "%s%3s" "󰕾" "$volume"

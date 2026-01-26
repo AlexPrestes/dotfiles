@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Aguarda até 5 segundos para o serviço de áudio (pactl) estar disponível.
+# Isso só causa atraso na inicialização, se necessário.
+for ((i = 0; i < 10; i++)); do
+  pactl info &>/dev/null && break
+  sleep 0.5
+done
+
+# --- A lógica do script continua abaixo ---
+
+PULSEMIXER="/home/arexprestes/.local/bin/pulsemixer"
+
+get_volume() {
+  "$PULSEMIXER" --get-volume 2>/dev/null | cut -d " " -f 1
+}
+
+is_mute() {
+  "$PULSEMIXER" --get-mute 2>/dev/null | grep -q "1"
+}
+
+if [[ ! -x "$PULSEMIXER" ]]; then
+  printf "󰖁 N/A"
+  exit 0
+fi
+
+volume=$(get_volume)
+
+if [[ -z "$volume" ]]; then
+  printf "󰖁 ERR"
+  exit 0
+fi
+
+if is_mute; then
+  icon="󰖁"
+  volume_str=" M "
+else
+  icon="󰕾"
+  volume_str="${volume}%"
+fi
+
+printf "%s%3s" "$icon" "$volume_str"

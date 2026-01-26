@@ -1,0 +1,6 @@
+#!/bin/bash
+
+brightness=$(brightnessctl --device='intel_backlight' get)
+brightness=$((brightness * 100 / 1500))
+icon="󰃞 "
+printf "%s%3s" "$icon" "$brightness%"

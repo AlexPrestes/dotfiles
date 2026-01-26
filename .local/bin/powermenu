@@ -1,0 +1,30 @@
+#!/bin/bash
+
+rofi_command="rofi -theme themes/powermenu.rasi -i "
+
+#### Options ###
+power_off="󰐥 Shutdown"
+reboot="󰤁 Reboot"
+lock="󰑸 Lock Screen"
+suspend="󰤄 Suspend"
+hibernate="󰀠 Hibernate"
+log_out="󰍃 Log Out"
+
+# Variable passed to rofi
+options="$power_off\n$reboot\n$suspend\n$hibernate\n$log_out\n$lock"
+
+chosen="$(echo -e "$options" | $rofi_command -dmenu -mesg "Power Menu")"
+case $chosen in
+$lock)
+  betterlockscreen -l dimblur
+  ;;
+$power_off)
+  systemctl poweroff
+  ;;
+$reboot)
+  systemctl reboot
+  ;;
+$log_out)
+  loginctl terminate-session ${XDG_SESSION_ID-}
+  ;;
+esac

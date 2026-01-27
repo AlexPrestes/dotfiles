@@ -15,6 +15,7 @@ bindkey "^[[F" end-of-line
 
 # Del (Delete)
 bindkey "^[[3~" delete-char
+bindkey "^[[2~" quoted-insert
 
 # Page Up e Page Down (Navegar no histórico)
 bindkey "^[[5~" up-line-or-history

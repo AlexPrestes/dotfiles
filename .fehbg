@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/home/arexprestes/Imagens/pane-pos.png' 
+feh --no-fehbg --bg-fill $HOME'/Imagens/pane-pos.png'

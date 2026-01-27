@@ -1,0 +1,2 @@
+#!/bin/sh
+ln -sf ~/.config/qt6ct/qt6ct-dark.conf ~/.config/qt6ct/qt6ct.conf

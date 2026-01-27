@@ -9,7 +9,7 @@ autoload -Uz zkbd
 bindkey '^?' backward-delete-char
 
 # Home / End / Delete via terminfo
-[[ -n ${terminfo[khome]} ]] || bindkey "${terminfo[khome]}" beginning-of-line
+bindkey '^[[H' beginning-of-line
 [[ -n ${terminfo[kend]}  ]] || bindkey "${terminfo[kend]}"  end-of-line
 [[ -n ${terminfo[kdch1]} ]] || bindkey "${terminfo[kdch1]}" delete-char
 

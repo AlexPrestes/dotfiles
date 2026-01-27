@@ -1,0 +1,101 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+Xft.letterSpace: -1
+!URxvt.intensityStyles: false
+
+!URxvt.font: xft:UbuntuMono Nerd Font Mono:pixelsize=16, xft:Noto Color Emoji:pixelsize=16
+
+!URxvt.saveLines: 2000
+!URxvt.scrollBar: false
+!URxvt.iso14755: false
+!URxvt.iso14755_52: false
+
+!! Extensions:
+!URxvt.perl-ext-common: default,matcher
+!URxvt.colorUL:  white
+
+!! Matcher:
+!URxvt.url-launcher: /usr/bin/xdg-open
+!URxvt.matcher.button: 1
+
+!! Copy and Paste:
+!URxvt.clipboard.autocopy: true
+!URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+!URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+
+!! Font size
+!URxvt.keysym.Mod4-plus: resize-font:bigger
+!URxvt.keysym.Mod4-minus: resize-font:smaller
+!URxvt.keysym.Mod4-equal: resize-font:reset
+
+
+!URxvt.keysym.Control-Meta-c: builtin-string:
+!URxvt.keysym.Control-Meta-v: builtin-string:
+
+!! Transparency
+!URxvt.transparent:   true
+!URxvt.shading:       20
+!urxvt.blurRadius: 25
+
+! Dracula Xresources palette
+!*.foreground: #F8F8F2
+!*.background: #282A36
+!*.color0:     #000000
+!*.color8:     #4D4D4D
+!*.color1:     #FF5555
+!*.color9:     #FF6E67
+!*.color2:     #50FA7B
+!*.color10:    #5AF78E
+!*.color3:     #F1FA8C
+!*.color11:    #F4F99D
+!*.color4:     #BD93F9
+!*.color12:    #CAA9FA
+!*.color5:     #FF79C6
+!*.color13:    #FF92D0
+!*.color6:     #8BE9FD
+!*.color14:    #9AEDFE
+!*.color7:     #BFBFBF
+!*.color15:    #E6E6E6
+
+
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
+
+! black
+*.color0:       #232323
+*.color8:       #444444
+
+! red
+*.color1:       #ff000f
+*.color9:       #ff2740
+
+! green
+*.color2:       #8ce10b
+*.color10:      #abe15b
+
+! yellow
+*.color3:       #ffb900
+*.color11:      #ffd242
+
+! blue
+*.color4:       #008df8
+*.color12:      #0092ff
+
+! magenta
+*.color5:       #6d43a6
+*.color13:      #9a5feb
+
+! cyan
+*.color6:       #00d8eb
+*.color14:      #67fff0
+
+! white
+*.color7:       #ffffff
+*.color15:      #ffffff

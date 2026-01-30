@@ -45,7 +45,8 @@ screens = [
                 widget.Spacer(length=5),
                 FortiVPNWidget(
                     update_interval=3,
-                    default_user="",
+                    active_color=CYAN,
+                    inactive_color=WHITE,
                     terminal_cmd=[terminal, "-e"],  # ajuste para seu terminal
                 ),
                 widget.Spacer(length=5),

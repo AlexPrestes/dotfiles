@@ -7,6 +7,7 @@ from libqtile.lazy import lazy
 from settings import terminal, home, GREEN, RED, WHITE, CYAN
 
 from widgets.ollama import OllamaWidget
+from widgets.fortivpn import FortiVPNWidget
 
 extension_defaults = dict(
     font="UbuntuMono Nerd Font Regular",
@@ -40,6 +41,12 @@ screens = [
                     custom_command="(checkupdates; yay -Qua) | cat",
                     display_format=" {updates}",
                     colour_have_updates=GREEN,
+                ),
+                widget.Spacer(length=5),
+                FortiVPNWidget(
+                    update_interval=3,
+                    default_user="",
+                    terminal_cmd=[terminal, "-e"],  # ajuste para seu terminal
                 ),
                 widget.Spacer(length=5),
                 OllamaWidget(

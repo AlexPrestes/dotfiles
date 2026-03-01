@@ -36,11 +36,13 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export TCLLIBPATH="/usr/lib/tcl8.6:/usr/lib/tk8.6"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 
-export PATH="${PATH}:${HOME}/bin:${HOME}/.local/bin:${HOME}/.dotnet/tools:/opt/prismlaucher:/opt/PokeMMO:$ANDROID_SDK_ROOT/platform-tools:/opt/cuda/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.dotnet/tools:/opt/prismlaucher:/opt/PokeMMO:$ANDROID_SDK_ROOT/platform-tools:/opt/cuda/bin"
+export PATH="$PATH:$HOME/.claude/bin"
 
 export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
 
 export OLLAMA_GPU_OVERHEAD=512
+
 
 #-----------------------------
 # Dircolors

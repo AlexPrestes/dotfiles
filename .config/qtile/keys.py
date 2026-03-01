@@ -50,7 +50,7 @@ keys = [
         desc="Launch terminal",
     ),
     Key([mod, "shift"], "Return", lazy.spawn(f"{home}/.local/bin/terminal_gpu.sh"), desc="Launch terminal GPU"),
-    Key([mod], "w", lazy.spawn(f"{browser}"), desc="Launch browser"),
+    Key([mod], "w", lazy.spawn(f"prime-run {browser}"), desc="Launch browser"),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     # Qtile system keys

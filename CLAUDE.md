@@ -4,7 +4,7 @@ Este arquivo fornece orientações ao Claude Code (claude.ai/code) ao trabalhar 
 
 ## Propósito do Repositório
 
-Dotfiles pessoais para Linux com ambiente de desktop baseado em Qtile. As configurações devem ficar em `$HOME` via symlinks ou cópia direta — não há script de instalação.
+Dotfiles pessoais para Linux com ambiente de desktop baseado em Qtile. As configurações ficam em `$HOME` via symlinks gerenciados pelo GNU Stow — **sempre usar `stow --adopt -t ~ .`** para criar ou atualizar links, nunca `ln -s` manual.
 
 ## Tecnologias Principais
 

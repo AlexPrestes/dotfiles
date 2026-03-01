@@ -44,6 +44,15 @@ O `config.py` importa de arquivos modulares:
 
 Usa o template [LazyVim](https://www.lazyvim.org/). A config Lua está em `.config/nvim/lua/config/` (options, keymaps, autocmds) e `.config/nvim/lua/plugins/` (specs de plugins).
 
+Plugins customizados em `lua/plugins/`:
+- `lsp.lua` — basedpyright (typeCheckingMode=basic), ruff via conform.nvim, parsers treesitter
+- `jupyter.lua` — molten.nvim + image.nvim (backend kitty) + jupytext.nvim
+- `ai.lua` — codecompanion.nvim com adapter anthropic (claude-sonnet-4-20250514)
+- `terminal.lua` — toggleterm.nvim (`<leader>tp` Python REPL horizontal, `<leader>tg` lazygit float)
+
+LazyVim extras habilitados em `lazy.lua`:
+`lang.python`, `lang.markdown`, `lang.docker`, `lang.yaml`, `lang.sql`, `lang.tex`
+
 ## Aplicando Mudanças
 
 **Qtile**: Recarregar config com `Super+Ctrl+r`. Erros de sintaxe Python em `.config/qtile/` impedem o reload — verificar com:

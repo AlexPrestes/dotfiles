@@ -62,7 +62,14 @@ screens = [
                 widget.Spacer(length=5),
                 widget.DF(
                     partition="/",
-                    format=" {r:.0f}%",
+                    format="󰋊 {r:.0f}%",
+                    visible_on_warn=False,
+                    **extension_defaults,
+                ),
+                widget.Spacer(length=5),
+                widget.DF(
+                    partition="/home/arexprestes",
+                    format="󰚗 {r:.0f}%",
                     visible_on_warn=False,
                     **extension_defaults,
                 ),

@@ -56,6 +56,13 @@ export LS_COLORS
 fpath+=~/.zfunc
 
 #------------------------------
+# Pyenv
+#------------------------------
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+#------------------------------
 # NVM
 #------------------------------
 export NVM_DIR="$HOME/.nvm"

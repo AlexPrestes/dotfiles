@@ -1,7 +1,9 @@
 {
+  "attribution": {},
+  "model": "opus",
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true
+  },
   "language": "pt-BR",
-  "attribution": {
-    "commits": false,
-    "pullRequests": false
-  }
+  "effortLevel": "low"
 }

@@ -5,6 +5,8 @@
 #-----------------------------
 # Source some stuff
 #-----------------------------
+export TERM=xterm-256color
+
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi

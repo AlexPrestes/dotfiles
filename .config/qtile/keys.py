@@ -1,6 +1,6 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
-from settings import mod, terminal, terminal_gpu, browser, home
+from settings import browser, home, mod, terminal
 
 keys = [
     Key([mod], "left", lazy.layout.left(), desc="Move focus to left"),
@@ -49,8 +49,20 @@ keys = [
         lazy.spawn(terminal),
         desc="Launch terminal",
     ),
-    Key([mod, "shift"], "Return", lazy.spawn(f"{home}/.local/bin/terminal_gpu.sh"), desc="Launch terminal GPU"),
-    Key([mod], "w", lazy.spawn(f"prime-run {browser}"), desc="Launch browser"),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.spawn(f"{home}/.local/bin/terminal_gpu.sh"),
+        desc="Launch terminal GPU",
+    ),
+    Key(
+        [mod],
+        "w",
+        lazy.spawn(
+            f"sh -c '__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only {browser}'"
+        ),
+        desc="Launch browser",
+    ),
     Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
     # Qtile system keys

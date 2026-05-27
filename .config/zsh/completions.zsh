@@ -2,6 +2,9 @@
 # Comp stuff
 #------------------------------
 zmodload zsh/complist
+
+fpath=(${HOME}/.zsh/completions $fpath)
+
 autoload -Uz compinit promptinit
 
 compinit

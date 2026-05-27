@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Configurações
+user="admin"
+ip="192.168.1.4"
+port="554"
+max_cam=7 # ajuste se tiver mais/menos câmeras
+
+usage() {
+  cat <<EOF
+Uso:
+  camsec <qualidade|stream> [cams...]
+Exemplos:
+  camsec l 1 2 4 5     # abre cams 1,2,4,5 no low (stream=1)
+  camsec h 1 3         # abre cams 1 e 3 no high (stream=0)
+  camsec 1             # compatível: abre todas (1..$max_cam) com stream=1
+  camsec               # mostra esta ajuda
+Qualidade/stream aceitos:
+  l  -> low  -> stream=1
+  h  -> high -> stream=0
+  número (ex: 0 ou 1) -> usado diretamente como stream
+EOF
+}
+
+# --- Parse dos argumentos ---
+if [ $# -eq 0 ]; then
+  usage
+  exit 0
+fi
+
+first="$1"
+shift
+
+# determinar stream a partir do primeiro argumento
+case "${first,,}" in # ,, -> lowercase
+l) stream="1" ;;
+h) stream="0" ;;
+'')
+  usage
+  exit 1
+  ;;
+*)
+  if [[ "$first" =~ ^[0-9]+$ ]]; then
+    stream="$first"
+  else
+    echo "Qualidade/stream inválido: $first"
+    usage
+    exit 1
+  fi
+  ;;
+esac
+
+# se houverem argumentos restantes, são IDs de câmeras; senão abrir todas
+cams=()
+if [ $# -gt 0 ]; then
+  # validar e adicionar só valores únicos entre 1..max_cam
+  declare -A seen
+  for c in "$@"; do
+    if ! [[ "$c" =~ ^[0-9]+$ ]]; then
+      echo "Ignorando valor não numérico: $c"
+      continue
+    fi
+    if [ "$c" -lt 1 ] || [ "$c" -gt "$max_cam" ]; then
+      echo "Ignorando câmera fora do intervalo (1..$max_cam): $c"
+      continue
+    fi
+    if [ -z "${seen[$c]}" ]; then
+      cams+=("$c")
+      seen[$c]=1
+    fi
+  done
+else
+  # preenche com todas as câmeras 1..max_cam
+  for ((i = 1; i <= max_cam; i++)); do
+    cams+=("$i")
+  done
+fi
+
+if [ ${#cams[@]} -eq 0 ]; then
+  echo "Nenhuma câmera válida para abrir."
+  exit 1
+fi
+
+# --- Senha (não embutida; solicitada a cada execução) ---
+# Usa CAMSEC_PASSWORD se estiver no ambiente; senão pergunta sem ecoar.
+if [ -n "$CAMSEC_PASSWORD" ]; then
+  password="$CAMSEC_PASSWORD"
+else
+  read -rsp "Senha para $user@$ip: " password
+  echo
+fi
+if [ -z "$password" ]; then
+  echo "Senha vazia — abortando."
+  exit 1
+fi
+
+# --- Abre feeds com ffplay ---
+for ch in "${cams[@]}"; do
+  url="rtsp://$user:$password@$ip:$port/cam/realmonitor?channel=${ch}&stream=${stream}"
+  echo "Abrindo câmera $ch (stream=$stream)"
+  ffplay -rtsp_transport tcp -i "$url" -an -v 0 &
+  sleep 0.08 # pequeno espaçamento para evitar picos simultâneos
+done
+
+echo "Comandos ffplay iniciados para câmeras: ${cams[*]}."

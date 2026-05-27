@@ -1,2 +1,8 @@
 __pycache__
 *.pyc
+
+# Claude Code: ~/.claude é symlink para .claude/ — versionar só config e skills,
+# ignorar todo o runtime (credenciais, histórico, sessões, cache, plugins...).
+.claude/*
+!.claude/settings.json
+!.claude/skills/
